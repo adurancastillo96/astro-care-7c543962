@@ -1,0 +1,11 @@
+[
+ {"capability":"code (web console)","source":"apps/web","outcome":"migrate","status":"done","next_action":"none"},
+ {"capability":"clinical engine + 109 tests","source":"packages/engine","outcome":"migrate","status":"done","next_action":"none"},
+ {"capability":"habitat server API + 1 Hz telemetry","source":"apps/server (Fastify, SSE)","outcome":"migrate to on-device module (offline, same routes/validation)","status":"done","next_action":"none"},
+ {"capability":"care log / checks persistence","source":"data/store.json","outcome":"browser localStorage per device","status":"done","next_action":"none"},
+ {"capability":"database / schema / records","source":"none detected","outcome":"not applicable","status":"verified","next_action":"none"},
+ {"capability":"auth / users","source":"none detected","outcome":"not applicable","status":"verified","next_action":"none"},
+ {"capability":"NASA OSDR + DONKI cached data","source":"apps/server/data","outcome":"bundled","status":"done","next_action":"none"},
+ {"capability":"fetch:data script (NASA_API_KEY)","source":"apps/server/scripts/fetch-data.ts","outcome":"not migrated (cached copies bundled)","status":"accepted","next_action":"none"},
+ {"capability":"3D model","source":"public/models/circulatory.glb","outcome":"hosted asset","status":"done","next_action":"none"}
+]

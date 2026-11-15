@@ -1,23 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { ClientOnly, createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const Console = lazy(() => import("@/app/Console"));
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ASTRO-CARE — Astronaut health console" },
+      { name: "description", content: "Offline health monitoring for Artemis crews: live NEWS2, care log and GO / NO-GO readiness test." },
+      { property: "og:title", content: "ASTRO-CARE — Astronaut health console" },
+      { property: "og:description", content: "Live vitals, NEWS2 and a GO / NO-GO readiness test for lunar-surface tasks." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const fallback = <div className="min-h-screen bg-background" />;
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <ClientOnly fallback={fallback}>
+      <Suspense fallback={fallback}>
+        <Console />
+      </Suspense>
+    </ClientOnly>
   );
 }

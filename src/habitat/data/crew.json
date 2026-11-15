@@ -1,0 +1,56 @@
+{
+  "_note": "Crew IDs and sex come from NASA OSDR Inspiration4 (C001–C004). Vitals baselines and PVT baselines are SIMULATED (PVT baselines ~310–330 ms: typical median for a browser test with mouse/touch latency) (OSDR has no wearable vitals). Roles are fictional. GUEST is the live-test profile used from the QR code (population-typical baseline, no care log).",
+  "crew": [
+    {
+      "id": "C001",
+      "role": "Commander",
+      "baseline": {
+        "heartRate": 58,
+        "systolicBP": 122,
+        "spo2": 98
+      },
+      "pvtBaselineMedianMs": 310
+    },
+    {
+      "id": "C002",
+      "role": "Pilot",
+      "baseline": {
+        "heartRate": 64,
+        "systolicBP": 112,
+        "spo2": 98
+      },
+      "pvtBaselineMedianMs": 320
+    },
+    {
+      "id": "C003",
+      "role": "Mission Specialist",
+      "baseline": {
+        "heartRate": 66,
+        "systolicBP": 108,
+        "spo2": 97
+      },
+      "pvtBaselineMedianMs": 330
+    },
+    {
+      "id": "C004",
+      "role": "Mission Specialist",
+      "baseline": {
+        "heartRate": 60,
+        "systolicBP": 126,
+        "spo2": 98
+      },
+      "pvtBaselineMedianMs": 315
+    },
+    {
+      "id": "GUEST",
+      "role": "Live test (judges)",
+      "guest": true,
+      "baseline": {
+        "heartRate": 70,
+        "systolicBP": 120,
+        "spo2": 98
+      },
+      "pvtBaselineMedianMs": 330
+    }
+  ]
+}

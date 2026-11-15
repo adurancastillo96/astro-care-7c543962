@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## ASTRO-CARE architecture
+- The habitat server runs on-device in `src/habitat/` (called via `src/app/api.ts`), not as server routes: it needs a shared 1 Hz simulation tick and must work offline, which Worker isolates can't provide.
+- `src/engine/` is the pure clinical engine; keep it framework-free and covered by `src/engine/test/` (zero-false-negative safety tests).
+- The console renders client-only (`ClientOnly` + lazy import) because it uses three.js, WebGL and localStorage.
+- tsconfig uses plain `strict` (no extra index/optional strictness) to match the imported codebase.

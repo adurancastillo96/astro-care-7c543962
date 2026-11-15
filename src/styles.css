@@ -8,6 +8,10 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import '@fontsource/oswald/500.css';
+@import '@fontsource/oswald/600.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/700.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -74,18 +78,18 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.11 0.008 165);
+  --foreground: oklch(0.95 0.015 155);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.8 0.18 150);
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted-foreground: oklch(0.66 0.035 160);
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
@@ -152,4 +156,104 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+/* ---- ASTRO-CARE console theme (ported from the original app) ---- */
+
+@theme {
+  --color-void: #040706;
+  --color-panel: #070c0a;
+  --color-line: #1d3328;
+  --color-dim: #7f9a8c;
+  --color-hud: #4ade80;
+  --color-go: #4ade80;
+  --color-nogo: #f43f5e;
+  --color-amber: #f59e0b;
+  --color-signal: #4ade80;
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background: var(--color-void);
+  color: #e8f3ec;
+  font-family: var(--font-display);
+}
+
+@layer components {
+/* Console panel with corner brackets */
+.hud {
+  position: relative;
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+}
+.hud::before,
+.hud::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: color-mix(in srgb, var(--color-hud) 55%, transparent);
+  pointer-events: none;
+}
+.hud::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-top-left-radius: 10px;
+}
+.hud::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  border-bottom-right-radius: 10px;
+}
+
+.hud-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-hud) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-hud) 7%, transparent) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+}
+
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-hud);
+  outline-offset: 2px;
+}
+
+@keyframes hotspot-ping {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.hotspot-ring {
+  animation: hotspot-ping 1.8s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-ring { animation: none; }
 }
